@@ -1,5 +1,6 @@
 # readygo (archive)
-*This repo is an archive for Ready GO Project 2019 (ANZ summer intern prerequisites)*
+This repo is an archive for Ready GO Project 2019 (ANZ summer intern prerequisites)
+*Note that, all the links in this README page is broken now*
 
 **Golang 学习笔记：请参见[ Golang 学习笔记](./go-note.md)**
 
