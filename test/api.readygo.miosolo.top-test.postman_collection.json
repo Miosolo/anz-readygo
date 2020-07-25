@@ -1,0 +1,773 @@
+{
+	"info": {
+		"_postman_id": "8a02f101-add7-4c90-ba3e-2ecd77b7dd40",
+		"name": "api.readygo.miosolo.top-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login Unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e6b219a1-2e5a-4783-865b-89afe7b07ffe",
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/v1",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"v1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Home Page",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/v1",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"v1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get OpenAPI",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0bdcf30f-1293-4830-8710-79e938db4429",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/v1/apidocs.json",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"v1",
+						"apidocs.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Swagger Page",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "44ae3bbc-2efa-4655-a903-e1e4ab792518",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/apidocs?url={{server}}/v1/apidocs.json",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"apidocs"
+					],
+					"query": [
+						{
+							"key": "url",
+							"value": "{{server}}/v1/apidocs.json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Asset (OK)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/v1/spaces/webtest/assets/A",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"v1",
+						"spaces",
+						"webtest",
+						"assets",
+						"A"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Asset (NotFound)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/spaces/webtest/assets/E",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"spaces",
+						"webtest",
+						"assets",
+						"E"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Space (OK)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/v1/spaces/webtest",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"v1",
+						"spaces",
+						"webtest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Space (404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "832a1ded-365c-45a7-8efb-dc0083de0c06",
+						"exec": [
+							"pm.test(\"Status not found\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/v1/spaces/webtest-blabla",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"v1",
+						"spaces",
+						"webtest-blabla"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Route (All of webtest)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "832a1ded-365c-45a7-8efb-dc0083de0c06",
+						"exec": [
+							"pm.test(\"Status not found\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/v1/route/space/webtest?init-x=0&init-y=0&sample-rate=1",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"v1",
+						"route",
+						"space",
+						"webtest"
+					],
+					"query": [
+						{
+							"key": "init-x",
+							"value": "0"
+						},
+						{
+							"key": "init-y",
+							"value": "0"
+						},
+						{
+							"key": "sample-rate",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Route (50%)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "832a1ded-365c-45a7-8efb-dc0083de0c06",
+						"exec": [
+							"pm.test(\"Status not found\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/v1/route/space/webtest?init-x=0&init-y=0&sample-rate=0.5",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"v1",
+						"route",
+						"space",
+						"webtest"
+					],
+					"query": [
+						{
+							"key": "init-x",
+							"value": "0"
+						},
+						{
+							"key": "init-y",
+							"value": "0"
+						},
+						{
+							"key": "sample-rate",
+							"value": "0.5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Route (50%)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "832a1ded-365c-45a7-8efb-dc0083de0c06",
+						"exec": [
+							"pm.test(\"Status not found\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/v1/spaces/webtest-blabla",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"v1",
+						"spaces",
+						"webtest-blabla"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload CSV",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "csv",
+							"type": "file",
+							"src": "/C:/Users/MX/OneDrive - std.uestc.edu.cn/Desktop/test_location-upload.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{server}}/v1/checkpoints",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"v1",
+						"checkpoints"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Asset (OK)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "835d4d92-ea45-4a08-8fbf-2a0692d6af73",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"base\": \"webtest\",\n\t\"name\": \"F\",\n\t\"rx\": 2,\n\t\"ry\": 2,\n\t\"weight\": 1\n}"
+				},
+				"url": {
+					"raw": "{{server}}/v1/spaces/webtest/assets/F",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"v1",
+						"spaces",
+						"webtest",
+						"assets",
+						"F"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Asset (Not Ac)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"base\": \"webtest-nonsence\",\n\t\"name\": \"F\",\n\t\"rx\": 2,\n\t\"ry\": 2,\n\t\"weight\": 1\n}"
+				},
+				"url": {
+					"raw": "{{server}}/v1/spaces/webtest-nonsense/assets/F",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"v1",
+						"spaces",
+						"webtest-nonsense",
+						"assets",
+						"F"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Asset (Conflict)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"base\": \"webtest\",\n\t\"name\": \"G\",\n\t\"rx\": 2,\n\t\"ry\": 2,\n\t\"weight\": 1\n}"
+				},
+				"url": {
+					"raw": "{{server}}/v1/spaces/webtest/assets/F",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"v1",
+						"spaces",
+						"webtest",
+						"assets",
+						"F"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Space (OK)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"base\": \"webtest\",\n\t\"name\": \"webtest-sub\",\n\t\"rx\": 2,\n\t\"ry\": 2\n}"
+				},
+				"url": {
+					"raw": "{{server}}/v1/spaces/webtest-sub/",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"v1",
+						"spaces",
+						"webtest-sub",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Space (Conflict)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"base\": \"webtest\",\n\t\"name\": \"webtest-sub\",\n\t\"rx\": 2,\n\t\"ry\": 2\n}"
+				},
+				"url": {
+					"raw": "{{server}}/v1/spaces/webtest-sub/",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"v1",
+						"spaces",
+						"webtest-sub",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Asset (OK)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/v1/spaces/webtest/assets/A",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"v1",
+						"spaces",
+						"webtest",
+						"assets",
+						"A"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Asset (Not Found)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/v1/spaces/webtest/assets/H",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"v1",
+						"spaces",
+						"webtest",
+						"assets",
+						"H"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Space (OK)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/v1/spaces/webtest-sub",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"v1",
+						"spaces",
+						"webtest-sub"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Space (Not Found)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/v1/spaces/webtest-blabla",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"v1",
+						"spaces",
+						"webtest-blabla"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch Asset (OK)",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"base\": \"webtest\",\n\t\"name\": \"F\",\n\t\"rx\": 2,\n\t\"ry\": 2,\n\t\"weight\": 1\n}"
+				},
+				"url": {
+					"raw": "{{server}}/v1/spaces/webtest/assets/A?rx=5&ry=5&weight=2",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"v1",
+						"spaces",
+						"webtest",
+						"assets",
+						"A"
+					],
+					"query": [
+						{
+							"key": "rx",
+							"value": "5"
+						},
+						{
+							"key": "ry",
+							"value": "5"
+						},
+						{
+							"key": "weight",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch Asset (Not Found)",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"base\": \"webtest\",\n\t\"name\": \"F\",\n\t\"rx\": 2,\n\t\"ry\": 2,\n\t\"weight\": 1\n}"
+				},
+				"url": {
+					"raw": "{{server}}/v1/spaces/webtest/assets/H?rx=5&ry=5&weight=2",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"v1",
+						"spaces",
+						"webtest",
+						"assets",
+						"H"
+					],
+					"query": [
+						{
+							"key": "rx",
+							"value": "5"
+						},
+						{
+							"key": "ry",
+							"value": "5"
+						},
+						{
+							"key": "weight",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "readygo2019",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "readygo-test",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "0a9fe549-a272-428f-abee-443be820f224",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "88ff263d-7336-4260-9973-1a31db44d3a4",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "38435a88-57ad-4c90-8eaa-4dd97735cd62",
+			"key": "server",
+			"value": "https://api.readygo.miosolo.top:8043",
+			"type": "string"
+		},
+		{
+			"id": "51aeb823-6dee-4385-bbd0-9be3ccb0f345",
+			"key": "serverLocal",
+			"value": "https://localhost:8043",
+			"type": "string",
+			"disabled": true
+		}
+	]
+}
